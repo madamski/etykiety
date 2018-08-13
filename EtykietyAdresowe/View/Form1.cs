@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using EtykietyAdresowe.Controler;
 
 namespace EtykietyAdresowe
 {
@@ -223,6 +224,8 @@ namespace EtykietyAdresowe
 
         public void button1_Click(object sender, EventArgs e)
         {
+            dataController controller = new dataController(textBox1.Text, textBox2.Text);
+            controller.makeSql();
             string polecenie = "ipconfig";
             Process process = new System.Diagnostics.Process();
             process.StartInfo.UseShellExecute = true;
@@ -232,6 +235,9 @@ namespace EtykietyAdresowe
             process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
             process.Start();
             process.WaitForExit();
+            outputController.fillInterface(this);
+
+
 
         }
 
